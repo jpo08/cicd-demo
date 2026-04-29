@@ -41,7 +41,7 @@ pipeline {
             steps {
                 script {
                     def qg = sh(
-                        script: """curl -s -u admin:admin \
+                        script: """curl -s -u admin:password \
                             "${SONAR_URL}/api/qualitygates/project_status?projectKey=cicd-demo" \
                             | python3 -c "import sys,json; \
                               d=json.load(sys.stdin); \
