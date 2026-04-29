@@ -17,7 +17,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh 'mvn test -DforkCount=0 -Dexclude="**/SeleniumExampleTest.java"'
+                sh 'mvn test -DforkCount=0' 
             }
         }
 
