@@ -32,7 +32,7 @@ pipeline {
                         -Dsonar.projectKey=cicd-demo \
                         -Dsonar.host.url=${SONAR_URL} \
                         -Dsonar.login=admin \
-                        -Dsonar.password=admin
+                        -Dsonar.password=password
                 """
             }
         }
