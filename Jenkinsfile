@@ -65,7 +65,7 @@ pipeline {
             steps {
                 script {
                     def result = sh(
-                        script: "trivy image --exit-code 1 --severity CRITICAL ${IMAGE_NAME}",
+                        script: "trivy image --timeout 15m --exit-code 1 --severity CRITICAL ${IMAGE_NAME}",
                         returnStatus: true
                     )
                     if (result != 0) {
@@ -89,7 +89,7 @@ pipeline {
 
     post {
         failure {
-            echo 'FALLO: El pipeline no completó. Revisa SonarQube o Trivy.'
+            echo 'FALLO: El pipeline no completó. Revisar SonarQube o Trivy.'
         }
         success {
             echo 'Pipeline exitoso. App desplegada en http://localhost:80'
