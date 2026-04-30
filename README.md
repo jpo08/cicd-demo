@@ -22,6 +22,20 @@ docker run -d --name jenkins --network cicd-net \
   -v /var/run/docker.sock:/var/run/docker.sock \
   jenkins/jenkins:lts
 ```
+instalar en el contenedor:
+
+```bash
+docker exec -u root jenkins bash -c "
+  apt-get update -qq &&
+  apt-get install -y maven docker.io python3 wget &&
+  wget -qO /usr/share/keyrings/trivy.gpg https://aquasecurity.github.io/trivy-repo/deb/public.key &&
+  echo 'deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb generic main' \
+    > /etc/apt/sources.list.d/trivy.list &&
+  apt-get update -qq &&
+  apt-get install -y trivy &&
+  chmod 666 /var/run/docker.sock
+"
+```
 
 ## Quality Gates configurados
 - SonarQube: bloquea si hay Security Hotspots
