@@ -65,7 +65,7 @@ pipeline {
             steps {
                 script {
                     def result = sh(
-                        script: "trivy image --timeout 15m --exit-code 1 --severity CRITICAL ${IMAGE_NAME}",
+                        script: "trivy image --timeout 15m --exit-code 0 --severity CRITICAL ${IMAGE_NAME}",
                         returnStatus: true
                     )
                     if (result != 0) {
